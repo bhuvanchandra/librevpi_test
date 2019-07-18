@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(librevpi_test)
 
-add_subdirectory(librevpi)
+add_subdirectory(external/librevpi)
 
 add_executable(librevpi_test main.c )
 
