@@ -1,0 +1,6 @@
+[submodule "external/external"]
+	path = external/external
+	url = https://github.com/bhuvanchandra/librevpi
+[submodule "external/librevpi"]
+	path = external/librevpi
+	url = https://github.com/bhuvanchandra/librevpi
