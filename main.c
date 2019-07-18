@@ -1,11 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "revpi.h"
 
 int main(void) {
   revpi_peripheral o_1, i_1;
+
+  sprintf(o_1.pin_name, "%s", "O_1");
+  sprintf(i_1.pin_name, "%s", "I_1");
+
   if ((revpi_init(&o_1) < 0) || (revpi_init(&i_1) < 0)) {
     printf("failed to init\n");
   } else {
