@@ -6,17 +6,25 @@
 #include "revpi.h"
 
 int main(void) {
-  revpi_peripheral o_1, i_1;
+  int ret = 0;
+  revpi_peripheral o_1, i_1, i_2;
 
   sprintf(o_1.pin_name, "%s", "O_1");
   sprintf(i_1.pin_name, "%s", "I_1");
+  sprintf(i_2.pin_name, "%s", "I_2");
 
-  if ((revpi_init(&o_1) < 0) || (revpi_init(&i_1) < 0)) {
-    printf("failed to init\n");
+  ret = revpi_init(&o_1);
+  ret = revpi_init(&i_1);
+  ret = revpi_init(&i_2);
+
+  revpi_set_do_level(&o_1, 1);
+  sleep(3);	
+  if ((revpi_get_di_level(&i_1) == 0) || (revpi_get_di_level(&i_2) == 0)) {
+    printf("got enough vaccum :), stop the suction pump\n");
+    revpi_set_do_level(&o_1, 0);
   } else {
-    revpi_set_do_level(&o_1, 1);
-    sleep(1);
-    printf("I_1 pin state: %d\n", revpi_get_di_level(&i_1));
+  	printf("timed out :(\n");
+  	revpi_set_do_level(&o_1, 0);
   }
 
   return 0;
