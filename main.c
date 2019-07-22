@@ -7,17 +7,21 @@
 
 int main(void) {
   int ret = 0;
-  revpi_peripheral o_1, i_1, i_2, do_pullupdown;
+  revpi_peripheral o_1, i_1, i_2, do_pullupdown, ai_1;
 
   sprintf(o_1.pin_name, "%s", "O_1");
-  sprintf(i_1.pin_name, "%s", "I_1");
-  sprintf(i_2.pin_name, "%s", "I_2");
   sprintf(do_pullupdown.pin_name, "%s", "OutputPushPull");
 
-  ret = revpi_init(&o_1);
-  ret = revpi_init(&do_pullupdown);
-  ret = revpi_init(&i_1);
-  ret = revpi_init(&i_2);
+  sprintf(i_1.pin_name, "%s", "I_1");
+  sprintf(i_2.pin_name, "%s", "I_2");
+
+  sprintf(ai_1.pin_name, "%s", "input_value_1");
+
+  revpi_init(&o_1);
+  revpi_init(&do_pullupdown);
+  revpi_init(&i_1);
+  revpi_init(&i_2);
+  revpi_init(&ai_1);
 
   uint16_t pullupdown_config = 0xFFFF; /* all 16 pins push pull enabled */
 
@@ -32,6 +36,11 @@ int main(void) {
     printf("timed out :(\n");
     revpi_set_do_level(&o_1, 0);
   }
+
+  while(1) {
+      printf("AI_1 value: %d\n", revpi_get_ai_value(&ai_1));
+      sleep(1);
+ }
 
   return 0;
 }
