@@ -15,7 +15,7 @@ int main(void) {
   sprintf(i_1.pin_name, "%s", "I_1");
   sprintf(i_2.pin_name, "%s", "I_2");
 
-  sprintf(ai_1.pin_name, "%s", "input_value_1");
+  sprintf(ai_1.pin_name, "%s", "InputValue_1");
 
   revpi_init(&o_1);
   revpi_init(&do_pullupdown);
