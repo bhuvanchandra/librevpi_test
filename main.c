@@ -23,8 +23,9 @@ int main(void) {
   revpi_init(&i_2);
   revpi_init(&ai_1);
 
-  uint16_t pullupdown_config = 0xFFFF; /* all 16 pins push pull enabled */
+  uint16_t pullupdown_config = 0xF; /* all 16 pins push pull enabled */
 
+  /* FIXME: this setting is not reflected */
   revpi_set_do_push_pull(&do_pullupdown, pullupdown_config);
 
   revpi_set_do_level(&o_1, 1);
